@@ -1,24 +1,40 @@
-using UnityEngine;
+using System.Collections.Generic;
 using UralHedgehog;
 
-public class Player : PlayerBase, IPlayer
+public class Player : PlayerBase, IPlayer, IPurchaser
 {
     public string Name { get; }
+    public int ClickCount => GetCounter<Click>().Value;
+    public int ClickMultiplier { get; private set; }
+    public List<int> Purchases { get; }
 
     public Player(PlayerData data)
     {
         Data = data;
 
         Name = data.Name;
-        
-        //TODO: Счетчики используются для ресурсов (в данном примере создали софт валюту и добавили к счетчикам)
-        var soft = new Soft(data.Soft);
-        var score = new Score(0);
-        CountersAdd(soft, score);
+
+        var clickCount = new Click(data.ClickCount);
+        CountersAdd(clickCount);
+
+        ClickMultiplier = data.ClickMultiplier;
+        Purchases = new List<int>(data.Purchases);
     }
 
     public override void Save()
     {
-        Data = new PlayerData(Name, GetCounter<Soft>().Value);
+        Data = new PlayerData(Name, GetCounter<Click>().Value, ClickMultiplier, Purchases);
+    }
+    
+    public void Purchase(Product product)
+    {
+        GetCounter<Click>().Withdraw(product.Price);
+        Purchases.Add(product.Id);
+        ClickMultiplier = product.Multiplier;
+    }
+
+    public bool HasClicks(int value)
+    {
+        return GetCounter<Click>().Available(value);
     }
 }

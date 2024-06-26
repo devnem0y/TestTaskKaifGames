@@ -53,6 +53,7 @@ MonoBehaviour:
   _audioResources: {fileID: 11400000, guid: e6f72874f0ca96f42ab9be2a8f01f222, type: 2}
   _uiHandler: {fileID: 2693766133719627956}
   _screenTransition: {fileID: 2402895376572982100}
+  _storePurchases: {fileID: 11400000, guid: 389479cabb4e9514482e3b444990947c, type: 2}
 --- !u!1001 &1123314585695001885
 PrefabInstance:
   m_ObjectHideFlags: 0

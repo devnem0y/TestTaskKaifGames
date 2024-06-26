@@ -8,6 +8,10 @@ namespace UralHedgehog
     {
         public static Game Instance { get; private set; }
 
+        [SerializeField] private StorePurchases _storePurchases;
+        
+        private Shop _shop;
+
         private void Awake()
         {
             Instance = this;
@@ -21,7 +25,10 @@ namespace UralHedgehog
         protected override void Initialization()
         {
             base.Initialization();
-            UIManager = new UIManager(UIHandler, _settings);
+
+            _shop = new Shop(_storePurchases, _player);
+            
+            UIManager = new UIManager(UIHandler, _settings, _shop);
         }
 
         public override void ChangeState(GameState state)
