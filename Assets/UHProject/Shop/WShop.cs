@@ -1,13 +1,12 @@
 using UnityEngine;
-using UralHedgehog;
 using UralHedgehog.UI;
 
-public class WShop : Widget<Shop>
+public class WShop : Widget<IShop>
 {
     [SerializeField] private ItemProduct _itemProduct;
     [SerializeField] private Transform _content;
     
-    public override void Init(Shop model)
+    public override void Init(IShop model)
     {
         base.Init(model);
 
@@ -15,26 +14,15 @@ public class WShop : Widget<Shop>
         {
             var item = Instantiate(_itemProduct, _content);
             var hasPurchaser = Model.Purchaser.Purchases.Contains(product.Id);
-            item.Init(product, hasPurchaser, SelectedItemProduct);
+            item.Init(product, hasPurchaser, Model.SelectedProduct);
         }
 
-        Model.buy += OnBuy;
+        Model.Buy += OnBuy;
     }
 
     private void OnDestroy()
     {
-        Model.buy -= OnBuy;
-    }
-
-    private void SelectedItemProduct(int productId)
-    {
-        Model.SelectProductId = productId;
-        
-        var product = Model.Storage.GetProduct(productId);
-        var hasClicks = Model.Purchaser.HasClicks(product.Price);
-        var transactions = new Transactions(product, Model, hasClicks);
-        
-        Game.Instance.UIManager.OpenViewProduct(transactions);
+        Model.Buy -= OnBuy;
     }
 
     private void OnBuy()

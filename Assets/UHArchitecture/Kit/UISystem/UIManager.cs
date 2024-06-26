@@ -32,7 +32,7 @@
                 _uiHandler.Create(nameof(WShop), _shop);
             }
             
-            public void OpenViewProduct(Transactions transactions)
+            public void OpenViewTransactions(Transactions transactions)
             {
                 _uiHandler.Create(nameof(WTransactions), transactions);
             }
@@ -56,7 +56,7 @@
                 _uiHandler.Kill(nameof(WShop));
             }
             
-            public void CloseViewProduct()
+            public void CloseViewTransactions()
             {
                 _uiHandler.Kill(nameof(WTransactions));
             }

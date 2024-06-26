@@ -1,21 +1,24 @@
 ﻿using System;
+using UralHedgehog;
 
-public class Shop : IShop, IPurchasing
+public class Shop : IShop
 {
-    public int SelectProductId { get; set; }
+    public int SelectProductId { get; private set; }
     public StorePurchases Storage { get; }
     public IPurchaser Purchaser { get; }
-    public event Action buy;
+    
+    public event Action Buy;
 
     public Shop(StorePurchases storePurchases, IPurchaser purchaser)
     {
         Storage = storePurchases;
         Purchaser = purchaser;
     }
-
-    public void Buy()
+    
+    public void SelectedProduct(Product product)
     {
-        Purchaser.Purchase(Storage.GetProduct(SelectProductId));
-        buy?.Invoke();
+        SelectProductId = product.Id;
+        var transactions = new Transactions(product, Purchaser, Buy);
+        Game.Instance.UIManager.OpenViewTransactions(transactions);
     }
 }

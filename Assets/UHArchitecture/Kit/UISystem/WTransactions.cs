@@ -17,8 +17,8 @@ public class WTransactions : Widget<Transactions>
         base.Init(model);
         
         _btnClose.onClick.AddListener(Hide);
-        _btnBuy.onClick.AddListener(Model.Purchasing.Buy);
-
+        _btnBuy.onClick.AddListener(Model.Buy);
+        
         _btnBuy.interactable = Model.HasClicks;
         _marker.SetActive(!Model.HasClicks);
 

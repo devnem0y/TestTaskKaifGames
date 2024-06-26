@@ -1,13 +1,26 @@
-﻿public class Transactions
+﻿using System;
+
+public class Transactions
 {
     public Product Product { get; }
-    public IPurchasing Purchasing { get; }
-    public bool HasClicks { get; }
+    public bool HasClicks => _purchaser.HasClicks(Product.Price);
     
-    public Transactions(Product product, IPurchasing purchasing, bool hasClicks)
+    private readonly IPurchaser _purchaser;
+    private readonly Action _callback;
+    
+    public Transactions(Product product, IPurchaser purchaser, Action callback)
     {
         Product = product;
-        Purchasing = purchasing;
-        HasClicks = hasClicks;
+        _purchaser = purchaser;
+
+        _callback = callback;
+    }
+
+    public void Buy()
+    {
+        if (!HasClicks) return;
+        
+        _purchaser.Purchase(Product);
+        _callback?.Invoke();
     }
 }

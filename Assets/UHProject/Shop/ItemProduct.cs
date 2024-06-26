@@ -13,14 +13,17 @@ public class ItemProduct : MonoBehaviour, IPointerClickHandler
     public int Id { get; private set; }
 
     private bool _isPurchased;
-    private Action<int> _action;
+    private Product _product;
+    private Action<Product> _action;
     
-    public void Init(Product product, bool isPurchased, Action<int> action)
+    public void Init(Product product, bool isPurchased, Action<Product> action)
     {
-        _title.text = product.Title;
-        _icon.sprite = product.Icon;
+        _product = product;
         
-        Id = product.Id;
+        _title.text = _product.Title;
+        _icon.sprite = _product.Icon;
+        
+        Id = _product.Id;
         _action = action;
         
         ChangeState(isPurchased);
@@ -28,7 +31,7 @@ public class ItemProduct : MonoBehaviour, IPointerClickHandler
 
     public void OnPointerClick(PointerEventData eventData)
     {
-        if (_isPurchased) _action?.Invoke(Id);
+        if (_isPurchased) _action?.Invoke(_product);
     }
 
     public void ChangeState(bool isPurchased)
