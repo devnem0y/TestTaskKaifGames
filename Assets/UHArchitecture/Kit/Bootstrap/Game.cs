@@ -11,6 +11,7 @@ namespace UralHedgehog
         [SerializeField] private StorePurchases _storePurchases;
         
         private Shop _shop;
+        private MainScreenController _mainScreenController;
 
         private void Awake()
         {
@@ -27,8 +28,8 @@ namespace UralHedgehog
             base.Initialization();
 
             _shop = new Shop(_storePurchases, _player);
-            
-            UIManager = new UIManager(UIHandler, _settings, _shop);
+            _mainScreenController = new MainScreenController(_shop);
+            UIManager = new UIManager(UIHandler, _settings, _mainScreenController);
         }
 
         public override void ChangeState(GameState state)
@@ -43,7 +44,8 @@ namespace UralHedgehog
                     break;
                 case GameState.MAIN:
                     Debug.Log("<color=yellow>Main</color>");
-                    UIManager.OpenViewSettings();
+                    //UIManager.OpenViewSettings();
+                    UIManager.OpenViewMain();
                     ScreenTransition.Show();
                     break;
                 case GameState.PLAY:

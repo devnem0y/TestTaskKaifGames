@@ -80,7 +80,9 @@ MonoBehaviour:
   _wrapperPanels: {fileID: 30398436424218558}
   _wrapperWindows: {fileID: 1219260050171743274}
   _widgets:
+  - {fileID: 4688975204435624730, guid: dc63d6d4127821f43ac8a31ba9920f34, type: 3}
   - {fileID: 8015555602500150929, guid: 89ce16450e791614295a50c99e127b7e, type: 3}
+  - {fileID: -3817224227181827372, guid: 89e5a752d4dc1ac4c807c33fecc6fda2, type: 3}
 --- !u!1 &8753377776333382170
 GameObject:
   m_ObjectHideFlags: 0

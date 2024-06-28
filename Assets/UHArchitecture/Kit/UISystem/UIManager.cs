@@ -7,14 +7,16 @@
             private readonly UIHandler _uiHandler;
             
             private readonly ISettings _settings;
-            private readonly Shop _shop;
+            private readonly MainScreenController _mainScreenController;
+            //private readonly Shop _shop;
             
-            public UIManager(UIHandler uiHandler, ISettings settings, Shop shop)
+            public UIManager(UIHandler uiHandler, ISettings settings, MainScreenController mainScreenController)
             {
                 _uiHandler = uiHandler;
                 
                 _settings = settings;
-                _shop = shop;
+                _mainScreenController = mainScreenController;
+                //_shop = shop;
             }
 
             #region Open
@@ -27,14 +29,19 @@
                 _uiHandler.Create(nameof(WSettings), _settings);
             }
             
-            public void OpenViewShop()
+            /*public void OpenViewShop()
             {
                 _uiHandler.Create(nameof(WShop), _shop);
-            }
+            }*/
             
             public void OpenViewTransactions(Transactions transactions)
             {
                 _uiHandler.Create(nameof(WTransactions), transactions);
+            }
+            
+            public void OpenViewMain()
+            {
+                _uiHandler.Create(nameof(PMain), _mainScreenController);
             }
 
             #endregion
@@ -51,10 +58,10 @@
                 _uiHandler.Kill(nameof(WSettings));
             }
             
-            public void CloseViewShop()
+            /*public void CloseViewShop()
             {
                 _uiHandler.Kill(nameof(WShop));
-            }
+            }*/
             
             public void CloseViewTransactions()
             {

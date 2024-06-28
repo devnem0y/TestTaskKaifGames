@@ -31,7 +31,7 @@ public class ItemProduct : MonoBehaviour, IPointerClickHandler
 
     public void OnPointerClick(PointerEventData eventData)
     {
-        if (_isPurchased) _action?.Invoke(_product);
+        if (!_isPurchased) _action?.Invoke(_product);
     }
 
     public void ChangeState(bool isPurchased)

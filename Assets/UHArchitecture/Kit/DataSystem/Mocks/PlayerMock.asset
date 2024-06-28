@@ -14,4 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _data:
     Name: User
-    Soft: 333
+    ClickCount: 0
+    ClickMultiplier: 0
+    Purchases: 
