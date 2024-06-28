@@ -6,6 +6,8 @@ namespace UralHedgehog
     public struct PlayerData : IData
     {
         public string Name;
+        public int Level;
+        public int ClickNextLevel;
         public int ClickCount;
         public int ClickMultiplier;
         public List<int> Purchases;
@@ -16,14 +18,18 @@ namespace UralHedgehog
             ClickCount = data.ClickCount;
             Purchases = data.Purchases;
             ClickMultiplier = data.ClickMultiplier;
+            ClickNextLevel = data.ClickNextLevel;
+            Level = data.Level;
         }
     
-        public PlayerData(string name, int clickCount, int clickMultiplier, List<int> purchases)
+        public PlayerData(string name, int clickCount, int clickMultiplier, int level, int clickNextLevel, List<int> purchases)
         {
             Name = name;
             ClickCount = clickCount;
             Purchases = purchases;
             ClickMultiplier = clickMultiplier;
+            ClickNextLevel = clickNextLevel;
+            Level = level;
         }
     }
 }

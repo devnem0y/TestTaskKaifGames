@@ -5,7 +5,7 @@ namespace UralHedgehog
     public abstract class Counter
     {
         public int Value { get; private set; }
-        public event Action OnChange;
+        public event Action Change;
 
         protected Counter(int value)
         {
@@ -18,7 +18,7 @@ namespace UralHedgehog
         public void Add(int value)
         {
             Value += value;
-            OnChange?.Invoke();
+            Change?.Invoke();
         }
 
         /// <summary>
@@ -37,7 +37,16 @@ namespace UralHedgehog
             if (!Available(value)) return;
             
             Value -= value;
-            OnChange?.Invoke();
+            Change?.Invoke();
+        }
+
+        /// <summary>
+        /// Обнуление
+        /// </summary>
+        public void Zero()
+        {
+            Value = 0;
+            Change?.Invoke();
         }
     }
 }

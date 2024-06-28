@@ -12,6 +12,7 @@ namespace UralHedgehog
         
         private Shop _shop;
         private MainScreenController _mainScreenController;
+        private ClickerController _clickerController;
 
         private void Awake()
         {
@@ -27,9 +28,10 @@ namespace UralHedgehog
         {
             base.Initialization();
 
+            _clickerController = new ClickerController(_player);
             _shop = new Shop(_storePurchases, _player);
-            _mainScreenController = new MainScreenController(_shop);
-            UIManager = new UIManager(UIHandler, _settings, _mainScreenController);
+            _mainScreenController = new MainScreenController(_shop, _clickerController.Clicker);
+            UIManager = new UIManager(UIHandler, _settings, _mainScreenController, _clickerController);
         }
 
         public override void ChangeState(GameState state)
@@ -44,7 +46,7 @@ namespace UralHedgehog
                     break;
                 case GameState.MAIN:
                     Debug.Log("<color=yellow>Main</color>");
-                    //UIManager.OpenViewSettings();
+                    UIManager.OpenViewTop();
                     UIManager.OpenViewMain();
                     ScreenTransition.Show();
                     break;
