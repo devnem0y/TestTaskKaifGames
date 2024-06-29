@@ -29,7 +29,23 @@ Preset:
     value: User
     objectReference: {fileID: 0}
   - target: {fileID: 0}
-    propertyPath: _data.Soft
-    value: 333
+    propertyPath: _data.Level
+    value: 1
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: _data.ClickNextLevel
+    value: 0
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: _data.ClickCount
+    value: 0
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: _data.ClickForce
+    value: 1
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: _data.Purchases.Array.size
+    value: 0
     objectReference: {fileID: 0}
   m_ExcludedProperties: []

@@ -1,6 +1,5 @@
 using System;
 using System.Collections.Generic;
-using UnityEngine;
 using UralHedgehog;
 
 public class Player : PlayerBase, IPlayer, IPurchaser, IClicker
@@ -13,12 +12,11 @@ public class Player : PlayerBase, IPlayer, IPurchaser, IClicker
     public int ClickCount => GetCounter<Click>().Value;
     public int ClickMultiplier { get; private set; }
     public List<int> Purchases { get; }
-    
+    public int ClickForce { get; private set; } = 1;
+
     public event Action ChangeClickCount;
     public event Action ChangeLevel;
 
-    private int _clickForce = 1;
-    
     public Player(PlayerData data)
     {
         Data = data;
@@ -31,7 +29,7 @@ public class Player : PlayerBase, IPlayer, IPurchaser, IClicker
         var clickCount = new Click(data.ClickCount);
         CountersAdd(clickCount);
 
-        ClickMultiplier = data.ClickMultiplier;
+        ClickMultiplier = data.ClickForce;
         Purchases = new List<int>(data.Purchases);
         
         SetClickForce();
@@ -43,7 +41,7 @@ public class Player : PlayerBase, IPlayer, IPurchaser, IClicker
     {
         Data = new PlayerData(Name, 
             GetCounter<Click>().Value, 
-            ClickMultiplier, Level, 
+            ClickForce, Level, 
             ClickNextLevel, 
             Purchases);
     }
@@ -64,7 +62,7 @@ public class Player : PlayerBase, IPlayer, IPurchaser, IClicker
 
     public void OnClick()
     {
-        GetCounter<Click>().Add(_clickForce);
+        GetCounter<Click>().Add(ClickForce);
 
         if (ClickCount < ClickNextLevel) return;
         
@@ -76,6 +74,6 @@ public class Player : PlayerBase, IPlayer, IPurchaser, IClicker
 
     private void SetClickForce()
     {
-        _clickForce *= ClickMultiplier;
+        ClickForce *= ClickMultiplier;
     }
 }

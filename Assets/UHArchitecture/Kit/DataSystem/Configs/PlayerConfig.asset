@@ -17,5 +17,5 @@ MonoBehaviour:
     Level: 1
     ClickNextLevel: 0
     ClickCount: 0
-    ClickMultiplier: 1
+    ClickForce: 1
     Purchases: 

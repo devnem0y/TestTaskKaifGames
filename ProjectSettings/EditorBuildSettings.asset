@@ -6,6 +6,6 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/UHArchitecture/Kit/UHMainExample.unity
+    path: Assets/UHProject/TestTaskKaifGames.unity
     guid: 41a10aa131226fb42b5d95803104b183
   m_configObjects: {}

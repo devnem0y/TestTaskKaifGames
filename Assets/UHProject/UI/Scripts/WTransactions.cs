@@ -28,6 +28,6 @@ public class WTransactions : Widget<Transactions>
 
         _title.text = Model.Product.Title;
         _lblMultiplier.text = $"x{Model.Product.Multiplier}";
-        _lblPrice.text = $"Купить за {Model.Product.Price} кликов";
+        _lblPrice.text = $"Buy for {Model.Product.Price} clicks";
     }
 }

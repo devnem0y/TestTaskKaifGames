@@ -14,8 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _data:
     Name: User
-    Level: 3
-    ClickNextLevel: 40
-    ClickCount: 4
-    ClickMultiplier: 2
-    Purchases: 00000000
+    Level: 1
+    ClickNextLevel: 0
+    ClickCount: 0
+    ClickForce: 1
+    Purchases: 

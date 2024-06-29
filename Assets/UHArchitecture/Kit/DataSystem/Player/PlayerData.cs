@@ -9,7 +9,7 @@ namespace UralHedgehog
         public int Level;
         public int ClickNextLevel;
         public int ClickCount;
-        public int ClickMultiplier;
+        public int ClickForce;
         public List<int> Purchases;
 
         public PlayerData(PlayerData data)
@@ -17,17 +17,17 @@ namespace UralHedgehog
             Name = data.Name;
             ClickCount = data.ClickCount;
             Purchases = data.Purchases;
-            ClickMultiplier = data.ClickMultiplier;
+            ClickForce = data.ClickForce;
             ClickNextLevel = data.ClickNextLevel;
             Level = data.Level;
         }
     
-        public PlayerData(string name, int clickCount, int clickMultiplier, int level, int clickNextLevel, List<int> purchases)
+        public PlayerData(string name, int clickCount, int clickForce, int level, int clickNextLevel, List<int> purchases)
         {
             Name = name;
             ClickCount = clickCount;
             Purchases = purchases;
-            ClickMultiplier = clickMultiplier;
+            ClickForce = clickForce;
             ClickNextLevel = clickNextLevel;
             Level = level;
         }
